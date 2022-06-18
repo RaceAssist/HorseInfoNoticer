@@ -1,0 +1,21 @@
+{
+    "schemaVersion": 1,
+    "id": "horse-info-noticer",
+    "version": "${version}",
+    "name": "HorseInfoNoticer",
+    "description": "",
+    "authors": ["Nikomaru"],
+    "contact": {},
+    "license": "CC0",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "dev.nikomaru.horseinfonoticer.HorseInfoNoticer"
+        ]
+    },
+    "depends": {
+        "fabricloader": ">=0.14.8",
+        "fabric": "*",
+        "minecraft": "1.19"
+    }
+}

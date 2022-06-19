@@ -5,40 +5,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DyeableArmorItem;
+import net.minecraft.world.entity.animal.horse.Horse;
 
 import java.awt.Color;
 import java.util.List;
 import java.util.Objects;
 
 public class RenderUtil {
-
-    private static Color getRiderHelmColor(Entity entity) {
-        var rider = EntityUtil.getRider(entity);
-        if (rider instanceof Player player) {
-            var helmStack = player.getInventory().armor.get(3);
-            if (helmStack.getItem() instanceof DyeableArmorItem helmItem) {
-                return new Color(helmItem.getColor(helmStack));
-            }
-        }
-        return null;
-    }
-
-    private static Color getLabelColor(Entity entity) {
-        var color = Color.BLACK;
-        if (entity instanceof AbstractHorse) {
-            var evaluateColor = HorseEntityUtil.getEvaluateRankColor((AbstractHorse) entity);
-            if (evaluateColor != null) {
-                color = evaluateColor;
-            }
-        }
-        var helmColor = getRiderHelmColor(entity);
-        if (helmColor != null) {
-            color = helmColor;
-        }
-        return color;
-    }
 
     public static void renderEntityInfo(Entity entity, List<String> infoString, PoseStack matrixStackIn, MultiBufferSource bufferIn,
             int packedLightIn) {
@@ -51,7 +24,13 @@ public class RenderUtil {
             return;
         }
         var scale = 0.025f;
-        var baseColor = getLabelColor(entity);
+
+        //ランクの取得
+        var rank = HorseEntityUtil.getEvaluateRankString((Horse) entity);
+        //ランクから色を取得
+        var baseColor = HorseInfoStats.calcEvaluateRankColor(rank);
+
+
         var titleColor = baseColor;
         if (baseColor == Color.BLACK) {
             titleColor = Color.WHITE;

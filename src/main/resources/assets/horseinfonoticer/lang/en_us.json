@@ -1,6 +1,10 @@
 {
     "horseinfonoticer.keybinding.category": "HorseInfoNoticer",
     "horseinfonoticer.keybinding.desc.toggle" : "Toggle HorseInfoNoticer",
+    "horseinfonoticer.keybinding.desc.mode" : "Change mode",
     "horseinfonoticer.message.enable" : "<color:green>HorseInfoNoticer is enabled.",
-    "horseinfonoticer.message.disable" : "<color:red>HorseInfoNoticer is disabled."
+    "horseinfonoticer.message.disable" : "<color:red>HorseInfoNoticer is disabled.",
+    "horseinfonoticer.message.mode.0" : "<color:green>HorseInfoNoticer is in <color:gold>Normal</color:gold> mode.",
+    "horseinfonoticer.message.mode.1" : "<color:green>HorseInfoNoticer is in <color:gold>Speed</color:gold> mode.",
+    "horseinfonoticer.message.mode.2" : "<color:green>HorseInfoNoticer is in <color:gold>Jump</color:gold> mode."
 }

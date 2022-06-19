@@ -1,6 +1,10 @@
 {
     "horseinfonoticer.keybinding.category": "HorseInfoNoticer",
     "horseinfonoticer.keybinding.desc.toggle" : "表示/非表示切り替え",
+    "horseinfonoticer.keybinding.desc.mode" : "モード切り替え",
     "horseinfonoticer.message.enable" : "<color:green>HorseInfoNoticerを有効にしました",
-    "horseinfonoticer.message.disable" : "<color:red>HorseInfoNoticerを無効にしました"
+    "horseinfonoticer.message.disable" : "<color:red>HorseInfoNoticerを無効にしました",
+    "horseinfonoticer.message.mode.0" : "HorseInfoNoticerは現在 <color:gold>通常モード</color:gold>です",
+    "horseinfonoticer.message.mode.1" : "HorseInfoNoticerは現在 <color:gold>スピードモード</color:gold>です",
+    "horseinfonoticer.message.mode.2" : "HorseInfoNoticerは現在 <color:gold>ジャンプモード</color:gold>です"
 }

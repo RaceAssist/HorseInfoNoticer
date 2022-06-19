@@ -26,9 +26,9 @@ public class HorseInfoStats {
     }
 
     public static String calcEvaluateRankString(double paramSpeed, double jumpHeight) {
-        if(HorseInfoNoticer.getMode() == 1) {
+        if (HorseInfoNoticer.getMode() == 1) {
             return speedBaseRank(paramSpeed);
-        }else if(HorseInfoNoticer.getMode() == -1) {
+        } else if (HorseInfoNoticer.getMode() == -1) {
             return jumpBaseRank(jumpHeight);
         }
         var horseEvaluate = calcEvaluateValue(paramSpeed, calcJumpHeight(jumpHeight));
@@ -61,39 +61,39 @@ public class HorseInfoStats {
     public static String speedBaseRank(double paramSpeed) {
         var speed = calcSpeed(paramSpeed);
         var rank = "G";
-        if (speed >= 14.2) {
+        if (speed >= 14.1) {
             rank = "LEGEND";
-        } else if (speed >= 14.15) {
+        } else if (speed >= 14.0) {
             rank = "S++";
-        } else if (speed >= 14.10) {
+        } else if (speed >= 13.9) {
             rank = "S+";
-        } else if (speed >= 13.95) {
+        } else if (speed >= 13.8) {
             rank = "S";
-        } else if (speed >= 13.90) {
+        } else if (speed >= 13.7) {
             rank = "A++";
-        } else if (speed >= 13.80) {
+        } else if (speed >= 13.6) {
             rank = "A+";
-        } else if (speed >= 13.70) {
+        } else if (speed >= 13.4) {
             rank = "A";
-        } else if (speed >= 13.55) {
+        } else if (speed >= 13.2) {
             rank = "B++";
-        } else if (speed >= 13.30) {
-            rank = "B+";
         } else if (speed >= 13.0) {
+            rank = "B+";
+        } else if (speed >= 12.8) {
             rank = "B";
-        } else if (speed >= 12.5) {
+        } else if (speed >= 12.6) {
             rank = "C++";
-        } else if (speed >= 12.0) {
+        } else if (speed >= 12.4) {
             rank = "C+";
-        } else if (speed >= 11.5) {
+        } else if (speed >= 12.2) {
             rank = "C";
-        } else if (speed >= 10.5) {
+        } else if (speed >= 12.0) {
             rank = "D";
-        } else if (speed >= 9.5) {
+        } else if (speed >= 11.8) {
             rank = "E";
-        } else if (speed >= 8.5) {
+        } else if (speed >= 11.6) {
             rank = "F";
-        } else if (speed >= 7.5) {
+        } else if (speed >= 11.4) {
             rank = "G";
         }
         return rank;
@@ -103,39 +103,39 @@ public class HorseInfoStats {
         var jump = calcJumpHeight(jumpHeight);
         var rank = "G";
 
-        if(jump >= 5.125) {
+        if (jump >= 5.0) {
             rank = "LEGEND";
-        }else if(jump >= 4.95) {
+        } else if (jump >= 4.75) {
             rank = "S++";
-        }else if (jump >= 4.775){
+        } else if (jump >= 4.5) {
             rank = "S+";
-        }else if (jump >= 4.60) {
+        } else if (jump >= 4.25) {
             rank = "S";
-        }else if (jump >= 4.425) {
+        } else if (jump >= 4.0) {
             rank = "A++";
-        }else if (jump >= 4.25) {
+        } else if (jump >= 3.75) {
             rank = "A+";
-        }else if (jump >= 4.075) {
+        } else if (jump >= 3.5) {
             rank = "A";
-        }else if (jump >= 3.90) {
+        } else if (jump >= 3.25) {
             rank = "B++";
-        }else if (jump >= 3.725) {
+        } else if (jump >= 3.0) {
             rank = "B+";
-        }else if (jump >= 3.55) {
+        } else if (jump >= 2.75) {
             rank = "B";
-        }else if (jump >= 3.375) {
+        } else if (jump >= 2.5) {
             rank = "C++";
-        }else if (jump >= 3.20) {
+        } else if (jump >= 2.25) {
             rank = "C+";
-        }else if (jump >= 3.025) {
+        } else if (jump >= 2.0) {
             rank = "C";
-        }else if (jump >= 2.85) {
+        } else if (jump >= 1.75) {
             rank = "D";
-        }else if (jump >= 2.675) {
+        } else if (jump >= 1.5) {
             rank = "E";
-        }else if (jump >= 2.50) {
+        } else if (jump >= 1.25) {
             rank = "F";
-        }else if (jump >= 2.325) {
+        } else if (jump >= 1.0) {
             rank = "G";
         }
 

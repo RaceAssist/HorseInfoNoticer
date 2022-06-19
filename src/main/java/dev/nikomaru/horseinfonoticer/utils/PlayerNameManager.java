@@ -34,13 +34,13 @@ public class PlayerNameManager {
                     var gson = new Gson();
                     var nameJson = IOUtils.toString(url, StandardCharsets.UTF_8);
                     var nameValue = gson.fromJson(nameJson, JsonObject.class);
-                    var name =  nameValue.get("username").toString();
+                    var name =  nameValue.get("username").toString().replace("\"", "");
                     cache.put(uuid, name);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                int index = requestList.indexOf(uuid);
+                var index = requestList.indexOf(uuid);
                 if (index >= 0) {
                     requestList.remove(index);
                 }

@@ -26,14 +26,14 @@ public class RenderUtil {
     }
 
     private static Color getLabelColor(Entity entity) {
-        Color color = Color.BLACK;
+        var color = Color.BLACK;
         if (entity instanceof AbstractHorse) {
-            Color evaluateColor = HorseEntityUtil.getEvaluateRankColor((AbstractHorse) entity);
+            var evaluateColor = HorseEntityUtil.getEvaluateRankColor((AbstractHorse) entity);
             if (evaluateColor != null) {
                 color = evaluateColor;
             }
         }
-        Color helmColor = getRiderHelmColor(entity);
+        var helmColor = getRiderHelmColor(entity);
         if (helmColor != null) {
             color = helmColor;
         }
@@ -65,11 +65,11 @@ public class RenderUtil {
         var fontHeight = 10;
         float baseY = (4 - infoString.size()) * fontHeight - ((EntityUtil.getRider(entity) != null) ? fontHeight * 3 : fontHeight);
 
-        int width = mc.font.width(entity.getName().getString());
-        for (String s : infoString) {
+        var width = mc.font.width(entity.getName().getString());
+        for (var s : infoString) {
             width = Math.max(mc.font.width(s), width);
         }
-        int widthHarf = width / 2;
+        var widthHarf = width / 2;
 
         var matrix4f = matrixStackIn.last().pose();
         var f1 = mc.options.getBackgroundOpacity(0.4f);
@@ -78,7 +78,7 @@ public class RenderUtil {
         var b = (baseColor.getBlue() / 255.0F) / 2.0F;
         var j = ((int) (f1 * 255.0F) << 24) + ((int) (r * 255.0F) << 16) + ((int) (g * 255.0F) << 8) + ((int) (b * 255.0F));
 
-        for (int i = 0; i < infoString.size(); i++) {
+        for (var i = 0; i < infoString.size(); i++) {
             mc.font.drawInBatch(infoString.get(i), -widthHarf, (int) baseY + fontHeight * i, (i == 0) ? titleColor.getRGB() : fontColor.getRGB(),
                     false, matrix4f, bufferIn, false, j, packedLightIn);
         }

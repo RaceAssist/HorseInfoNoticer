@@ -1,0 +1,6 @@
+{
+    "horseinfonoticer.keybinding.category": "HorseInfoNoticer",
+    "horseinfonoticer.keybinding.desc.toggle" : "Toggle HorseInfoNoticer",
+    "horseinfonoticer.message.enable" : "<color:green>HorseInfoNoticer is enabled.",
+    "horseinfonoticer.message.disable" : "<color:red>HorseInfoNoticer is disabled."
+}

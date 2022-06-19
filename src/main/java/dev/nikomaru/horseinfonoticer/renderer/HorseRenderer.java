@@ -6,6 +6,7 @@ import static dev.nikomaru.horseinfonoticer.utils.EntityUtil.getHorseStatsString
 
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.nikomaru.horseinfonoticer.HorseInfoNoticer;
 import dev.nikomaru.horseinfonoticer.utils.RenderUtil;
 import net.minecraft.Util;
 import net.minecraft.client.model.HorseModel;
@@ -50,6 +51,10 @@ public class HorseRenderer extends AbstractHorseRenderer<Horse, HorseModel<Horse
     public void render(@NotNull Horse entity, float yaw, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn,
             int packedLightIn) {
         super.render(entity, yaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+
+        if (!HorseInfoNoticer.isEnable()) {
+            return;
+        }
 
         var infoString = new ArrayList<String>();
         infoString.add(getDisplayNameWithRank(entity));

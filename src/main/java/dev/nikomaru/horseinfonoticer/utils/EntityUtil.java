@@ -43,7 +43,7 @@ public class EntityUtil {
     }
 
     public static List<String> getHorseStatsString(AbstractHorse entity) {
-        List<Entity> passengers = entity.getPassengers();
+        var passengers = entity.getPassengers();
 
         if (passengers == null || passengers.size() == 0) {
             return HorseEntityUtil.getStatsStrings(entity);
@@ -52,7 +52,7 @@ public class EntityUtil {
     }
 
     public static Entity getRider(Entity entity) {
-        List<Entity> passengers = entity.getPassengers();
+        var passengers = entity.getPassengers();
         if (passengers == null || passengers.size() == 0) {
             return null;
         }

@@ -13,20 +13,20 @@ public class HorseInfoStats {
     }
 
     public static double calcEvaluateValue(double paramSpeed, double jumpHeight) {
-        double jumpRating = Math.floor(jumpHeight * 2.0D) / (2.0D * 5.0D);
+        var jumpRating = Math.floor(jumpHeight * 2.0D) / (2.0D * 5.0D);
 
-        final double speedHeavy = 10.0D;
-        final double heightHeavy = 1.0D;
+        final var speedHeavy = 10.0D;
+        final var heightHeavy = 1.0D;
 
-        final double valueMax = 0.3375D * speedHeavy + heightHeavy;
-        double value = (paramSpeed * speedHeavy) + jumpRating * heightHeavy;
+        final var valueMax = 0.3375D * speedHeavy + heightHeavy;
+        var value = (paramSpeed * speedHeavy) + jumpRating * heightHeavy;
         return value / valueMax;
     }
 
     public static String calcEvaluateRankString(double paramSpeed, double jumpHeight) {
-        double horseEvaluate = calcEvaluateValue(paramSpeed, jumpHeight);
+        var horseEvaluate = calcEvaluateValue(paramSpeed, jumpHeight);
 
-        final String[] rankString = {
+        final var rankString = new String[]{
                 "G", "G", "G",
                 "F", "F", "F",
                 "E", "E", "E",
@@ -38,9 +38,9 @@ public class HorseInfoStats {
                 "LEGEND"
         };
 
-        double rate = horseEvaluate * 2.0D - 1.0;
+        var rate = horseEvaluate * 2.0D - 1.0;
 
-        int pt = (int) (rate * rankString.length);
+        var pt = (int) (rate * rankString.length);
         if (pt >= rankString.length) {
             return rankString[rankString.length - 1];
         }
@@ -52,9 +52,9 @@ public class HorseInfoStats {
     }
 
     public static Color calcEvaluateRankColor(double paramSpeed, double jumpHeight) {
-        double horseEvaluate = calcEvaluateValue(paramSpeed, jumpHeight);
+        var horseEvaluate = calcEvaluateValue(paramSpeed, jumpHeight);
 
-        final Color[] rankColor = {
+        final var rankColor = new Color[]{
                 Color.BLACK, Color.BLACK, Color.BLACK,
                 Color.BLACK, Color.BLACK, Color.BLACK,
                 Color.BLACK, Color.BLACK, Color.BLACK,
@@ -65,8 +65,8 @@ public class HorseInfoStats {
                 new Color(0xFF, 0xAA, 0x00), new Color(0xFF, 0x55, 0x55), new Color(0xFF, 0x55, 0xFF),
                 new Color(0xFF, 0xCC, 0xFF)
         };
-        double rate = horseEvaluate * 2.0D - 1.0;
-        int pt = (int) (rate * rankColor.length);
+        var rate = horseEvaluate * 2.0D - 1.0;
+        var pt = (int) (rate * rankColor.length);
         if (pt >= rankColor.length) {
             return rankColor[rankColor.length - 1];
         }

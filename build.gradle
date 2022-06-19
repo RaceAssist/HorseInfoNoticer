@@ -1,6 +1,6 @@
 plugins {
-    id ("fabric-loom") version "0.12-SNAPSHOT"
-    id ("maven-publish")
+    id("fabric-loom") version "0.12-SNAPSHOT"
+    id("maven-publish")
 }
 
 version = project.mod_version
@@ -12,25 +12,32 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
-}
-
-dependencies {
-    minecraft ("com.mojang:minecraft:1.19")
-    mappings (loom.officialMojangMappings())
-    modImplementation ("net.fabricmc:fabric-loader:${project.loader_version}")
-
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-}
-
-processResources {
-    inputs.property "version", project.version
-    filteringCharset "UTF-8"
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
+    maven {
+        name = "sonatype-oss-snapshots1"
+        url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
     }
 }
 
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings(loom.officialMojangMappings())
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
+
+    modImplementation("net.kyori:adventure-text-minimessage:4.11.0")
+
+    modImplementation include("net.kyori:adventure-platform-fabric:5.4.0-SNAPSHOT")
+}
+
+processResources {
+    inputs.property "version", project.minecraft_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.minecraft_version
+    }
+}
 def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"

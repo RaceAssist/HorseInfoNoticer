@@ -12,12 +12,18 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.world.entity.EntityType;
 import org.lwjgl.glfw.GLFW;
 
-import java.text.MessageFormat;
-
 public class HorseInfoNoticer implements ClientModInitializer {
 
     static boolean enable = true;
     static int mode = 0;
+
+    public static int getMode() {
+        return mode;
+    }
+
+    public static boolean isEnable() {
+        return enable;
+    }
 
     @Override
     public void onInitializeClient() {
@@ -46,10 +52,10 @@ public class HorseInfoNoticer implements ClientModInitializer {
     }
 
     private void toggleMode() {
-        mode ++;
+        mode++;
         var message = I18n.get("horseinfonoticer.message.mode." + mode);
 
-        if(mode >= 2) {
+        if (mode >= 2) {
             mode = -1;
         }
 
@@ -57,10 +63,6 @@ public class HorseInfoNoticer implements ClientModInitializer {
         var mm = MiniMessage.miniMessage();
 
         client.sendActionBar(mm.deserialize(message));
-    }
-
-    public static int getMode() {
-        return mode;
     }
 
     private void toggleEnable() {
@@ -75,10 +77,6 @@ public class HorseInfoNoticer implements ClientModInitializer {
             message = I18n.get("horseinfonoticer.message.disable");
         }
         client.sendActionBar(mm.deserialize(message));
-    }
-
-    public static boolean isEnable() {
-        return enable;
     }
 
 }

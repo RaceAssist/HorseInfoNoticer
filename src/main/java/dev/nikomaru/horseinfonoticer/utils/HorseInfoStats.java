@@ -61,40 +61,26 @@ public class HorseInfoStats {
     public static String speedBaseRank(double paramSpeed) {
         var speed = calcSpeed(paramSpeed);
         var rank = "G";
-        if (speed >= 14.1) {
-            rank = "LEGEND";
-        } else if (speed >= 14.0) {
-            rank = "S++";
-        } else if (speed >= 13.9) {
-            rank = "S+";
-        } else if (speed >= 13.8) {
-            rank = "S";
-        } else if (speed >= 13.7) {
-            rank = "A++";
-        } else if (speed >= 13.6) {
-            rank = "A+";
-        } else if (speed >= 13.4) {
-            rank = "A";
-        } else if (speed >= 13.2) {
-            rank = "B++";
-        } else if (speed >= 13.0) {
-            rank = "B+";
-        } else if (speed >= 12.8) {
-            rank = "B";
-        } else if (speed >= 12.6) {
-            rank = "C++";
-        } else if (speed >= 12.4) {
-            rank = "C+";
-        } else if (speed >= 12.2) {
-            rank = "C";
-        } else if (speed >= 12.0) {
-            rank = "D";
-        } else if (speed >= 11.8) {
-            rank = "E";
-        } else if (speed >= 11.6) {
-            rank = "F";
-        } else if (speed >= 11.4) {
-            rank = "G";
+        if (speed >= 13.6) {
+            var list = new String[]{"LEGEND", "S++", "S+", "S", "A++", "A+"};
+
+            for (var i = 0; i < list.length; i++) {
+                if (speed > 14.1 - (i * 0.1)) {
+                    rank = list[i];
+                    break;
+                }
+            }
+
+        } else {
+            var list = new String[]{"A", "B++", "B+", "B", "C++", "C+", "C", "D", "E", "F", "G"};
+
+            for (var i = 0; i < list.length; i++) {
+                if (speed > 13.4 - (i * 0.2)) {
+                    rank = list[i];
+                    break;
+                }
+            }
+
         }
         return rank;
     }
@@ -102,42 +88,15 @@ public class HorseInfoStats {
     public static String jumpBaseRank(double jumpHeight) {
         var jump = calcJumpHeight(jumpHeight);
         var rank = "G";
+        var list = new String[]{"LEGEND", "S++", "S+", "S", "A++", "A+", "A", "B++", "B+", "B", "C++", "C+", "C", "D", "E", "F", "G"};
 
-        if (jump >= 5.0) {
-            rank = "LEGEND";
-        } else if (jump >= 4.75) {
-            rank = "S++";
-        } else if (jump >= 4.5) {
-            rank = "S+";
-        } else if (jump >= 4.25) {
-            rank = "S";
-        } else if (jump >= 4.0) {
-            rank = "A++";
-        } else if (jump >= 3.75) {
-            rank = "A+";
-        } else if (jump >= 3.5) {
-            rank = "A";
-        } else if (jump >= 3.25) {
-            rank = "B++";
-        } else if (jump >= 3.0) {
-            rank = "B+";
-        } else if (jump >= 2.75) {
-            rank = "B";
-        } else if (jump >= 2.5) {
-            rank = "C++";
-        } else if (jump >= 2.25) {
-            rank = "C+";
-        } else if (jump >= 2.0) {
-            rank = "C";
-        } else if (jump >= 1.75) {
-            rank = "D";
-        } else if (jump >= 1.5) {
-            rank = "E";
-        } else if (jump >= 1.25) {
-            rank = "F";
-        } else if (jump >= 1.0) {
-            rank = "G";
+        for (var i = 0; i < list.length; i++) {
+            if (jump >= 5.0 - (i * 0.25)) {
+                rank = list[i];
+                break;
+            }
         }
+
 
         return rank;
     }

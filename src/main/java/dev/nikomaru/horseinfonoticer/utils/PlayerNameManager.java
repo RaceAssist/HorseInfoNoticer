@@ -34,7 +34,7 @@ public class PlayerNameManager {
                     var gson = new Gson();
                     var nameJson = IOUtils.toString(url, StandardCharsets.UTF_8);
                     var nameValue = gson.fromJson(nameJson, JsonObject.class);
-                    var name =  nameValue.get("username").toString().replace("\"", "");
+                    var name = nameValue.get("username").toString().replace("\"", "");
                     cache.put(uuid, name);
                 } catch (Exception e) {
                     e.printStackTrace();

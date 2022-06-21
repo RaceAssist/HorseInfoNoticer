@@ -3,7 +3,6 @@ package dev.nikomaru.horseinfonoticer.utils;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 
-import java.awt.Color;
 import java.util.List;
 import java.util.Objects;
 

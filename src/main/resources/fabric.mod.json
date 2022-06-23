@@ -4,11 +4,14 @@
     "version": "${version}",
     "name": "HorseInfoNoticer",
     "description": "",
-    "authors": ["Nikomaru"],
+    "authors": [
+        "Nikomaru"
+    ],
     "contact": {},
     "license": "CC0-1.0",
     "environment": "client",
     "entrypoints": {
+
         "client": [
             "dev.nikomaru.horseinfonoticer.HorseInfoNoticer"
         ]

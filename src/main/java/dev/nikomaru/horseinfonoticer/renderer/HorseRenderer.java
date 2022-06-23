@@ -1,54 +1,55 @@
 package dev.nikomaru.horseinfonoticer.renderer;
 
-import static dev.nikomaru.horseinfonoticer.utils.EntityUtil.getAgeOrOwnerString;
 import static dev.nikomaru.horseinfonoticer.utils.EntityUtil.getDisplayNameWithRank;
 import static dev.nikomaru.horseinfonoticer.utils.EntityUtil.getHorseStatsString;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.vertex.PoseStack;
 import dev.nikomaru.horseinfonoticer.HorseInfoNoticer;
+import dev.nikomaru.horseinfonoticer.utils.EntityUtil;
 import dev.nikomaru.horseinfonoticer.utils.RenderUtil;
-import net.minecraft.Util;
-import net.minecraft.client.model.HorseModel;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.AbstractHorseRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.layers.HorseArmorLayer;
-import net.minecraft.client.renderer.entity.layers.HorseMarkingLayer;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.animal.horse.Horse;
-import net.minecraft.world.entity.animal.horse.Variant;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.AbstractHorseEntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.feature.HorseArmorFeatureRenderer;
+import net.minecraft.client.render.entity.feature.HorseMarkingFeatureRenderer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.model.HorseEntityModel;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.passive.HorseColor;
+import net.minecraft.entity.passive.HorseEntity;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class HorseRenderer extends AbstractHorseRenderer<Horse, HorseModel<Horse>> {
+public class HorseRenderer extends AbstractHorseEntityRenderer<HorseEntity, HorseEntityModel<HorseEntity>> {
 
-    private static final Map<Variant, ResourceLocation> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(Variant.class), map -> {
-        map.put(Variant.WHITE, new ResourceLocation("textures/entity/horse/horse_white.png"));
-        map.put(Variant.CREAMY, new ResourceLocation("textures/entity/horse/horse_creamy.png"));
-        map.put(Variant.CHESTNUT, new ResourceLocation("textures/entity/horse/horse_chestnut.png"));
-        map.put(Variant.BROWN, new ResourceLocation("textures/entity/horse/horse_brown.png"));
-        map.put(Variant.BLACK, new ResourceLocation("textures/entity/horse/horse_black.png"));
-        map.put(Variant.GRAY, new ResourceLocation("textures/entity/horse/horse_gray.png"));
-        map.put(Variant.DARKBROWN, new ResourceLocation("textures/entity/horse/horse_darkbrown.png"));
+
+    private static final Map<HorseColor, Identifier> LOCATION_BY_VARIANT = Util.make(Maps.newEnumMap(HorseColor.class), map -> {
+        map.put(HorseColor.WHITE, new Identifier("textures/entity/horse/horse_white.png"));
+        map.put(HorseColor.CREAMY, new Identifier("textures/entity/horse/horse_creamy.png"));
+        map.put(HorseColor.CHESTNUT, new Identifier("textures/entity/horse/horse_chestnut.png"));
+        map.put(HorseColor.BROWN, new Identifier("textures/entity/horse/horse_brown.png"));
+        map.put(HorseColor.BLACK, new Identifier("textures/entity/horse/horse_black.png"));
+        map.put(HorseColor.GRAY, new Identifier("textures/entity/horse/horse_gray.png"));
+        map.put(HorseColor.DARKBROWN, new Identifier("textures/entity/horse/horse_darkbrown.png"));
     });
 
-    public HorseRenderer(EntityRendererProvider.Context context) {
-        super(context, new HorseModel<>(context.bakeLayer(ModelLayers.HORSE)), 1.1F);
-        addLayer(new HorseMarkingLayer(this));
-        addLayer(new HorseArmorLayer(this, context.getModelSet()));
+    public HorseRenderer(EntityRendererFactory.Context context) {
+        super(context, new HorseEntityModel<>(context.getPart(EntityModelLayers.HORSE)), 1.1f);
+        this.addFeature(new HorseMarkingFeatureRenderer(this));
+        this.addFeature(new HorseArmorFeatureRenderer(this, context.getModelLoader()));
     }
 
-    public ResourceLocation getTextureLocation(Horse entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+    @Override public Identifier getTexture(HorseEntity entity) {
+        return LOCATION_BY_VARIANT.get(entity.getColor());
     }
 
 
-    @Override
-    public void render(@NotNull Horse entity, float yaw, float partialTicks, @NotNull PoseStack matrixStackIn, @NotNull MultiBufferSource bufferIn,
+    public void render(@NotNull HorseEntity entity, float yaw, float partialTicks, @NotNull MatrixStack matrixStackIn,
+            @NotNull VertexConsumerProvider bufferIn,
             int packedLightIn) {
         super.render(entity, yaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 
@@ -64,7 +65,7 @@ public class HorseRenderer extends AbstractHorseRenderer<Horse, HorseModel<Horse
         if (statsString != null) {
             infoString.addAll(statsString);
         }
-        var stringAgeOrOwner = getAgeOrOwnerString(entity);
+        var stringAgeOrOwner = EntityUtil.getAgeOrOwnerString(entity);
         if (stringAgeOrOwner != null) {
             infoString.add(stringAgeOrOwner);
         }
@@ -77,6 +78,4 @@ public class HorseRenderer extends AbstractHorseRenderer<Horse, HorseModel<Horse
                 packedLightIn
         );
     }
-
-
 }

@@ -7,9 +7,9 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.kyori.adventure.platform.fabric.FabricClientAudiences;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.resources.language.I18n;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.entity.EntityType;
+import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
 public class HorseInfoNoticer implements ClientModInitializer {
@@ -29,21 +29,21 @@ public class HorseInfoNoticer implements ClientModInitializer {
     public void onInitializeClient() {
 
         var KEYBINDING_ENABLE = KeyBindingHelper.registerKeyBinding(
-                new KeyMapping("horseinfonoticer.keybinding.desc.toggle", GLFW.GLFW_KEY_H, "horseinfonoticer.keybinding.category")
+                new KeyBinding("horseinfonoticer.keybinding.desc.toggle", GLFW.GLFW_KEY_H, "horseinfonoticer.keybinding.category")
         );
 
         var KEYBINDING_MODE = KeyBindingHelper.registerKeyBinding(
-                new KeyMapping("horseinfonoticer.keybinding.desc.mode", GLFW.GLFW_KEY_J, "horseinfonoticer.keybinding.category")
+                new KeyBinding("horseinfonoticer.keybinding.desc.mode", GLFW.GLFW_KEY_J, "horseinfonoticer.keybinding.category")
         );
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (KEYBINDING_ENABLE.consumeClick()) {
+            if (KEYBINDING_ENABLE.wasPressed()) {
                 toggleEnable();
             }
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (KEYBINDING_MODE.consumeClick()) {
+            if (KEYBINDING_MODE.wasPressed()) {
                 toggleMode();
             }
         });
@@ -53,7 +53,7 @@ public class HorseInfoNoticer implements ClientModInitializer {
 
     private void toggleMode() {
         mode++;
-        var message = I18n.get("horseinfonoticer.message.mode." + mode);
+        var message = Text.translatable("horseinfonoticer.message.mode." + mode).getString();
 
         if (mode >= 2) {
             mode = -1;
@@ -72,9 +72,9 @@ public class HorseInfoNoticer implements ClientModInitializer {
         var mm = MiniMessage.miniMessage();
         var message = "";
         if (enable) {
-            message = I18n.get("horseinfonoticer.message.enable");
+            message = Text.translatable("horseinfonoticer.message.enable").getString();
         } else {
-            message = I18n.get("horseinfonoticer.message.disable");
+            message = Text.translatable("horseinfonoticer.message.disable").getString();
         }
         client.sendActionBar(mm.deserialize(message));
     }

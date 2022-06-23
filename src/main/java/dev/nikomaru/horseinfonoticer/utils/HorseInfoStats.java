@@ -61,27 +61,15 @@ public class HorseInfoStats {
     public static String speedBaseRank(double paramSpeed) {
         var speed = calcSpeed(paramSpeed);
         var rank = "G";
-        if (speed >= 13.6) {
-            var list = new String[]{"LEGEND", "S++", "S+", "S", "A++", "A+"};
-
-            for (var i = 0; i < list.length; i++) {
-                if (speed > 14.1 - (i * 0.1)) {
-                    rank = list[i];
-                    break;
-                }
+        var list = new String[]{"LEGEND", "S++", "S+", "S", "A++", "A+", "A", "A", "B++", "B++"
+                , "B+", "B+", "B", "B", "C++", "C++", "C+", "C+", "C", "C", "D", "D", "E", "E", "F", "F", "G", "G"};
+        for (var i = 0; i < list.length; i++) {
+            if (speed > 14.1 - (i * 0.1)) {
+                rank = list[i];
+                break;
             }
-
-        } else {
-            var list = new String[]{"A", "B++", "B+", "B", "C++", "C+", "C", "D", "E", "F", "G"};
-
-            for (var i = 0; i < list.length; i++) {
-                if (speed > 13.4 - (i * 0.2)) {
-                    rank = list[i];
-                    break;
-                }
-            }
-
         }
+
         return rank;
     }
 

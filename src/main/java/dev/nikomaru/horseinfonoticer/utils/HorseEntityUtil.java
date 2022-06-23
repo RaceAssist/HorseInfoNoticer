@@ -1,27 +1,26 @@
 package dev.nikomaru.horseinfonoticer.utils;
 
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.passive.HorseEntity;
 
 import java.util.List;
-import java.util.Objects;
 
 public class HorseEntityUtil {
 
-    public static double getSpeed(AbstractHorse entity) {
-        return Objects.requireNonNull(entity.getAttribute(Attributes.MOVEMENT_SPEED)).getValue();
+    public static double getSpeed(HorseEntity entity) {
+        return entity.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
     }
 
-    public static double getJumpStrength(AbstractHorse entity) {
-        return Objects.requireNonNull(entity.getAttribute(Attributes.JUMP_STRENGTH)).getValue();
+    public static double getJumpStrength(HorseEntity entity) {
+        return entity.getJumpStrength();
     }
 
 
-    public static String getEvaluateRankString(AbstractHorse entity) {
+    public static String getEvaluateRankString(HorseEntity entity) {
         return HorseInfoStats.calcEvaluateRankString(getSpeed(entity), getJumpStrength(entity));
     }
 
-    public static List<String> getStatsStrings(AbstractHorse entity) {
+    public static List<String> getStatsStrings(HorseEntity entity) {
         return HorseInfoFormat.formatHorseStats(
                 entity.getHealth(),
                 entity.getMaxHealth(),

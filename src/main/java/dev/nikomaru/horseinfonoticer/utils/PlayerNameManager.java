@@ -27,7 +27,7 @@ public class PlayerNameManager {
             requestList.add(uuid);
 
             new Thread(() -> {
-                var suuid = uuid.toString().toLowerCase().replaceAll("-", "");
+                var suuid = uuid.toString().toLowerCase().replace("-", "");
 
                 try {
                     var url = new URL(PROFILE_URL + suuid);

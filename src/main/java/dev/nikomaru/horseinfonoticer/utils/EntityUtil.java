@@ -1,9 +1,10 @@
 package dev.nikomaru.horseinfonoticer.utils;
 
-import net.minecraft.world.Nameable;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.TamableAnimal;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.HorseEntity;
+import net.minecraft.entity.passive.TameableEntity;
+import net.minecraft.util.Nameable;
+
 
 import java.util.List;
 import java.util.UUID;
@@ -27,23 +28,23 @@ public class EntityUtil {
     }
 
 
-    public static String getAgeOrOwnerString(TamableAnimal entity) {
-        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUUID());
+    public static String getAgeOrOwnerString(TameableEntity entity) {
+        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUuid());
     }
 
-    public static String getAgeOrOwnerString(AbstractHorse entity) {
-        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUUID());
+    public static String getAgeOrOwnerString(HorseEntity entity) {
+        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUuid());
     }
 
-    public static String getDisplayNameWithRank(AbstractHorse entity) {
+    public static String getDisplayNameWithRank(HorseEntity entity) {
         return HorseInfoFormat.formatHorseNameWithRank(
                 EntityUtil.getDisplayNameString(entity),
                 HorseEntityUtil.getEvaluateRankString(entity)
         );
     }
 
-    public static List<String> getHorseStatsString(AbstractHorse entity) {
-        var passengers = entity.getPassengers();
+    public static List<String> getHorseStatsString(HorseEntity entity) {
+        var passengers = entity.getPassengerList();
 
         if (passengers == null || passengers.size() == 0) {
             return HorseEntityUtil.getStatsStrings(entity);
@@ -51,8 +52,8 @@ public class EntityUtil {
         return null;
     }
 
-    public static Entity getRider(Entity entity) {
-        var passengers = entity.getPassengers();
+    public static Entity getRider(HorseEntity entity) {
+        var passengers = entity.getPassengerList();
         if (passengers == null || passengers.size() == 0) {
             return null;
         }

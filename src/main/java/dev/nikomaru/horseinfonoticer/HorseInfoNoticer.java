@@ -14,7 +14,7 @@ import org.lwjgl.glfw.GLFW;
 
 public class HorseInfoNoticer implements ClientModInitializer {
 
-    static boolean enable = true;
+    public static boolean enable = true;
     static int mode = 0;
 
     public static int getMode() {

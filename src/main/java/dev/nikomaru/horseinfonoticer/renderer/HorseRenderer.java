@@ -34,7 +34,7 @@ public class HorseRenderer extends AbstractHorseEntityRenderer<HorseEntity, Hors
         map.put(HorseColor.BROWN, new Identifier("textures/entity/horse/horse_brown.png"));
         map.put(HorseColor.BLACK, new Identifier("textures/entity/horse/horse_black.png"));
         map.put(HorseColor.GRAY, new Identifier("textures/entity/horse/horse_gray.png"));
-        map.put(HorseColor.DARKBROWN, new Identifier("textures/entity/horse/horse_darkbrown.png"));
+        map.put(HorseColor.DARK_BROWN, new Identifier("textures/entity/horse/horse_darkbrown.png"));
     });
 
     public HorseRenderer(EntityRendererFactory.Context context) {
@@ -44,7 +44,7 @@ public class HorseRenderer extends AbstractHorseEntityRenderer<HorseEntity, Hors
     }
 
     @Override public Identifier getTexture(HorseEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getColor());
+        return LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 
 

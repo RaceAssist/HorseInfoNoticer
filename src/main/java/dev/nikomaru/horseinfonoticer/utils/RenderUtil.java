@@ -2,6 +2,7 @@ package dev.nikomaru.horseinfonoticer.utils;
 
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.passive.HorseEntity;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class RenderUtil {
 
     public static void renderEntityInfo(HorseEntity entity, List<String> infoString, MatrixStack matrixStackIn, VertexConsumerProvider bufferIn,
-            int packedLightIn) {
+                                        int packedLightIn) {
         var mc = MinecraftClient.getInstance();
         if (mc.player == EntityUtil.getRider(entity)) {
             return;
@@ -47,7 +48,7 @@ public class RenderUtil {
         for (var s : infoString) {
             width = Math.max(mc.textRenderer.getWidth(s), width);
         }
-        var widthHarf = width / 2;
+        var widthHalf = width / 2.0F;
 
         var matrix4f = matrixStackIn.peek().getPositionMatrix();
         var f1 = mc.options.getTextBackgroundOpacity(0.4f);
@@ -57,11 +58,12 @@ public class RenderUtil {
         var j = ((int) (f1 * 255.0F) << 24) + ((int) (r * 255.0F) << 16) + ((int) (g * 255.0F) << 8) + ((int) (b * 255.0F));
 
         for (var i = 0; i < infoString.size(); i++) {
-            mc.textRenderer.draw(infoString.get(i), -widthHarf, (int) baseY + fontHeight * i, (i == 0) ? titleColor.getRGB() :
+            mc.textRenderer.draw(infoString.get(i), -widthHalf, baseY + fontHeight * i, (i == 0) ? titleColor.getRGB() :
                             fontColor.getRGB(),
-                    false, matrix4f, bufferIn, false, j, packedLightIn);
+                    false, matrix4f, bufferIn, TextRenderer.TextLayerType.NORMAL, j, packedLightIn);
         }
         matrixStackIn.pop();
     }
+
 
 }

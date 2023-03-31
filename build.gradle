@@ -27,8 +27,8 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}")
     modImplementation('net.kyori:adventure-text-minimessage:4.13.0')
-    modImplementation include("net.kyori:adventure-platform-fabric:5.6.0")
-    modImplementation("com.terraformersmc:modmenu:5.0.2")
+    modImplementation include("net.kyori:adventure-platform-fabric:5.8.0")
+    modImplementation("com.terraformersmc:modmenu:6.1.0-rc.4")
 }
 
 processResources {

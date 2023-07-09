@@ -43,14 +43,15 @@ public class HorseRenderer extends AbstractHorseEntityRenderer<HorseEntity, Hors
         this.addFeature(new HorseArmorFeatureRenderer(this, context.getModelLoader()));
     }
 
-    @Override public Identifier getTexture(HorseEntity entity) {
+    @Override
+    public Identifier getTexture(HorseEntity entity) {
         return LOCATION_BY_VARIANT.get(entity.getVariant());
     }
 
 
     public void render(@NotNull HorseEntity entity, float yaw, float partialTicks, @NotNull MatrixStack matrixStackIn,
-            @NotNull VertexConsumerProvider bufferIn,
-            int packedLightIn) {
+                       @NotNull VertexConsumerProvider bufferIn,
+                       int packedLightIn) {
         super.render(entity, yaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
 
         if (!HorseInfoNoticer.isEnable()) {
@@ -66,9 +67,7 @@ public class HorseRenderer extends AbstractHorseEntityRenderer<HorseEntity, Hors
             infoString.addAll(statsString);
         }
         var stringAgeOrOwner = EntityUtil.getAgeOrOwnerString(entity);
-        if (stringAgeOrOwner != null) {
-            infoString.add(stringAgeOrOwner);
-        }
+        infoString.add(stringAgeOrOwner);
 
         RenderUtil.renderEntityInfo(
                 entity,

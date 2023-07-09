@@ -7,6 +7,7 @@ import net.minecraft.util.Nameable;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class EntityUtil {
@@ -17,7 +18,7 @@ public class EntityUtil {
 
     private static String getOwnerString(UUID uuid) {
         if (uuid == null) {
-            return null;
+            return "(Owner: Not Found)";
         }
 
         var ownerName = "Unknown";
@@ -25,11 +26,6 @@ public class EntityUtil {
         ownerName = HorseInfoCore.playerNameManager.getPlayerName(uuid);
 
         return "(Owner: " + ownerName + ")";
-    }
-
-
-    public static String getAgeOrOwnerString(TameableEntity entity) {
-        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUuid());
     }
 
     public static String getAgeOrOwnerString(HorseEntity entity) {

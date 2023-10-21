@@ -2,12 +2,8 @@ package dev.nikomaru.horseinfonoticer.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.HorseEntity;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.util.Nameable;
-
-
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class EntityUtil {
@@ -27,6 +23,7 @@ public class EntityUtil {
 
         return "(Owner: " + ownerName + ")";
     }
+
 
     public static String getAgeOrOwnerString(HorseEntity entity) {
         return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUuid());

@@ -15,9 +15,13 @@
             "dev.nikomaru.horseinfonoticer.HorseInfoNoticer"
         ]
     },
+    "mixins": [
+        "horseinfonoticer.mixins.json"
+    ],
     "depends": {
-        "fabricloader": ">=0.14.12",
+        "fabricloader": ">=0.18.0",
         "fabric": "*",
-        "minecraft": ">=1.19.3"
+        "minecraft": ">=1.21.8",
+        "java": ">=21"
     }
 }

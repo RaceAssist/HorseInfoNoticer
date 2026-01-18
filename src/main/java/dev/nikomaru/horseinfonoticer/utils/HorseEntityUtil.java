@@ -8,11 +8,11 @@ import java.util.List;
 public class HorseEntityUtil {
 
     public static double getSpeed(HorseEntity entity) {
-        return entity.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
+        return entity.getAttributeValue(EntityAttributes.MOVEMENT_SPEED);
     }
 
     public static double getJumpStrength(HorseEntity entity) {
-        return entity.getJumpStrength();
+        return entity.getAttributeValue(EntityAttributes.JUMP_STRENGTH);
     }
 
 

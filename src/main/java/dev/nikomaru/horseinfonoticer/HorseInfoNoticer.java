@@ -1,14 +1,11 @@
 package dev.nikomaru.horseinfonoticer;
 
-import dev.nikomaru.horseinfonoticer.renderer.HorseRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.kyori.adventure.platform.fabric.FabricClientAudiences;
+import net.kyori.adventure.platform.modcommon.MinecraftClientAudiences;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.entity.EntityType;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
 
@@ -48,7 +45,6 @@ public class HorseInfoNoticer implements ClientModInitializer {
             }
         });
 
-        EntityRendererRegistry.register(EntityType.HORSE, HorseRenderer::new);
     }
 
     private void toggleMode() {
@@ -59,7 +55,7 @@ public class HorseInfoNoticer implements ClientModInitializer {
             mode = -1;
         }
 
-        var client = FabricClientAudiences.of().audience();
+        var client = MinecraftClientAudiences.of().audience();
         var mm = MiniMessage.miniMessage();
 
         client.sendActionBar(mm.deserialize(message));
@@ -68,7 +64,7 @@ public class HorseInfoNoticer implements ClientModInitializer {
     private void toggleEnable() {
         enable = !enable;
 
-        var client = FabricClientAudiences.of().audience();
+        var client = MinecraftClientAudiences.of().audience();
         var mm = MiniMessage.miniMessage();
         var message = "";
         if (enable) {

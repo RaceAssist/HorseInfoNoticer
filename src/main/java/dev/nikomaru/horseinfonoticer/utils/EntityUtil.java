@@ -1,6 +1,7 @@
 package dev.nikomaru.horseinfonoticer.utils;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.HorseEntity;
 import net.minecraft.util.Nameable;
 import java.util.List;
@@ -26,7 +27,15 @@ public class EntityUtil {
 
 
     public static String getAgeOrOwnerString(HorseEntity entity) {
-        return entity.isBaby() ? "(Baby)" : getOwnerString(entity.getOwnerUuid());
+        if (entity.isBaby()) {
+            return "(Baby)";
+        }
+        var ownerRef = entity.getOwnerReference();
+        if (ownerRef == null) {
+            return getOwnerString(null);
+        }
+        var owner = ownerRef.resolve(entity.getWorld(), LivingEntity.class);
+        return getOwnerString(owner != null ? owner.getUuid() : null);
     }
 
     public static String getDisplayNameWithRank(HorseEntity entity) {

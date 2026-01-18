@@ -4,7 +4,7 @@ yarn = "1.21.8+build.1"
 fabric-loader = "0.18.4"
 fabric-api = "0.136.1+1.21.8"
 fabric-loom = "1.14-SNAPSHOT"
-adventure-platform-fabric = "6.5.0"
+adventure-platform-fabric = "6.5.1"
 adventure-text-minimessage = "4.23.0"
 
 [libraries]
